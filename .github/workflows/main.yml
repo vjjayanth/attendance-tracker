@@ -2,7 +2,7 @@ name: Automate Attendance Tracking
 
 on:
   schedule:
-    - cron: "55 18 * * *" # Runs at 6 PM UTC (adjust as needed)
+    - cron: "55 17 * * *"  # Runs at 6:55 PM UTC
 
   workflow_dispatch:  # Allows manual execution
 
@@ -14,10 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Restore Previous attendance.json
+        uses: actions/download-artifact
+        with:
+          name: attendance-data
+          path: .
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+          cache: 'pip'  # Enables caching for pip packages
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -27,3 +34,9 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python attendance_script.py
+
+      - name: Upload Updated attendance.json
+        uses: actions/upload-artifact
+        with:
+          name: attendance-data
+          path: attendance.json
