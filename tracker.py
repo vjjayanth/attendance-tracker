@@ -11,20 +11,25 @@ import json
 from datetime import datetime
 import requests
 
+# Set Chrome options
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run in headless mode (no UI)
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+# Automatically find and use ChromeDriver (No need to install manually)
+driver = webdriver.Chrome(options=chrome_options)
+
+driver.get("https://www.google.com")
+
+
 # Constants
 LOGIN_URL = "https://automation.vnrvjiet.ac.in/eduprime3"
 JSON_FILE = "attendance.json"  # Stores last attendance
 USERNAME = "22071A12C6"
 PASSWORD = "Jai@2004"
 
-# Set up Selenium WebDriver (🔹 Optimized Setup)
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
 
-service = Service("/opt/homebrew/bin/chromedriver")  # Update path if needed
-driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # Subject mapping
 subjects = {
