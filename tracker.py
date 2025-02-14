@@ -163,7 +163,7 @@ try:
     # Replace with your Telegram Bot Token and Chat ID
     TELEGRAM_BOT_TOKEN = "7735591874:AAHxx1ili9rLSV416lQsb2YFiWrVRwWTRkY"
     CHAT_ID = "1623826061"
-    NOTIFICATION_FILE_PATH = "/Users/jayanth/Desktop/attendance_tracker/notification.csv"  # Update this if your file has a different name
+    NOTIFICATION_FILE_PATH = "notification.csv"  # Update this if your file has a different name
 
 
     def read_notification_file():
