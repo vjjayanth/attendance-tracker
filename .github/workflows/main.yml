@@ -2,7 +2,7 @@ name: Automate Attendance Tracking
 
 on:
   schedule:
-    - cron: "0 19 * * *"  # Runs at 6:55 PM UTC
+    - cron: "20 19 * * *"  # Runs at 6:55 PM UTC
 
   workflow_dispatch:  # Allows manual execution
 
