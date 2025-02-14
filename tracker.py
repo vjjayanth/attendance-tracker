@@ -153,6 +153,12 @@ try:
 
     print("✅ Attendance comparison done!")
 
+    
+
+    if os.path.exists("notification.csv"):
+        print("✅ notification.csv exists!")
+    else:
+        print("❌ notification.csv NOT FOUND!")
 
 
 
