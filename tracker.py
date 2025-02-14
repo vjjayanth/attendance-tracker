@@ -13,7 +13,6 @@ import requests
 
 # Constants
 LOGIN_URL = "https://automation.vnrvjiet.ac.in/eduprime3"
-FILE_NAME = "/Users/jayanth/Desktop/attendance_tracker/notification.csv"  # Notification file
 JSON_FILE = "attendance.json"  # Stores last attendance
 USERNAME = "22071A12C6"
 PASSWORD = "Jai@2004"
