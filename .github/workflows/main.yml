@@ -2,7 +2,7 @@ name: Automate Attendance Tracking
 
 on:
   schedule:
-    - cron: "20 19 * * *"  # Runs at 7:20 PM UTC
+    - cron: "20 19 * * *"  # Runs at 7:20 PM UTC daily
 
   workflow_dispatch:  # Allows manual execution
 
@@ -13,22 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Restore Previous attendance.json (if exists)
-        continue-on-error: true  # ✅ Prevents failure if artifact is missing
-        uses: actions/download-artifact@v4
-        with:
-          name: attendance-data
-          path: .
-
-      - name: Ensure attendance.json exists
-        run: |
-          if [ ! -f attendance.json ]; then
-            echo "{}" > attendance.json  # ✅ Creates an empty JSON file if not found
-            echo "attendance.json was missing. Created a new one."
-          else
-            echo "attendance.json found."
-          fi
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -51,8 +35,7 @@ jobs:
           name: attendance-data
           path: attendance.json
 
-      - name: Upload notification.csv
-        if: success()  # ✅ Upload only if script runs successfully
+      - name: Upload notification.csv as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: attendance-notification
