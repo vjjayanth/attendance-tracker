@@ -1,26 +1,28 @@
 import telebot
 import requests
 
-TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN"
-CHAT_ID = "YOUR_CHAT_ID"
-GITHUB_REPO = "username/repo-name"  # Replace with your repo
-GITHUB_TOKEN = "YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
+# Constants
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+GITHUB_REPO = "vjjayanth/attendance-tracker"  # Replace with your GitHub repo
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # GitHub Token stored as a secret
 
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
 @bot.message_handler(commands=['check_attendance'])
 def check_attendance(message):
-    url = f"https://api.github.com/repos/{GITHUB_REPO}/actions/workflows/attendance.yml/dispatches"
+    """Trigger GitHub Actions workflow for attendance tracking."""
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/actions/workflows/automate_attendance_tracking.yml/dispatches"
     headers = {
         "Authorization": f"token {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
-    data = {"ref": "main"}  # Change branch name if needed
+    data = {"ref": "main"}  # Change branch if needed
 
     response = requests.post(url, json=data, headers=headers)
 
     if response.status_code == 204:
-        bot.reply_to(message, "✅ Attendance check started! You'll get a notification soon.")
+        bot.reply_to(message, "✅ Attendance check started! You will receive a notification soon.")
     else:
         bot.reply_to(message, f"❌ Failed to trigger GitHub Actions: {response.text}")
 
