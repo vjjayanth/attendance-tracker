@@ -1,0 +1,22 @@
+name: Run Attendance Script
+
+on:
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions
+
+jobs:
+  run-attendance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt  # Make sure this file has Selenium, requests, etc.
+
+      - name: Run Attendance Script
+        run: python your_script.py  # Replace with your script filename
