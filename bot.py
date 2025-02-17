@@ -12,7 +12,7 @@ bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 @bot.message_handler(commands=['check_attendance'])
 def check_attendance(message):
     """Trigger GitHub Actions workflow for attendance tracking."""
-    url = f"https://api.github.com/repos/{GITHUB_REPO}/actions/workflows/attendance.yml/dispatches"
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/actions/workflows/main.yml/dispatches"
     headers = {
         "Authorization": f"token {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
