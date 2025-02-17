@@ -146,10 +146,11 @@ try:
             writer.writerows(notification_data[1:])  # Write new changes only
 
         print("⚡ Notification saved!")
-
+    if attendance_changed:
     # Step 7: Update JSON File (🔹 Now writes only if needed)
-    with open(JSON_FILE, "w") as file:
-        json.dump(cumulative_attendance, file)
+        with open(JSON_FILE, "w") as file:
+            json.dump(cumulative_attendance, file)
+            print("attendance saved in json")
 
     print("✅ Attendance comparison done!")
 
