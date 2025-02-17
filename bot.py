@@ -5,7 +5,7 @@ import requests
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 GITHUB_REPO = "vjjayanth/attendance-tracker"  # Replace with your GitHub repo
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # GitHub Token stored as a secret
+GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # GitHub Token stored as a secret
 
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
