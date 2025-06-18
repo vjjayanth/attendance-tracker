@@ -26,8 +26,8 @@ driver.get("https://www.google.com")
 # Constants
 LOGIN_URL = "https://automation.vnrvjiet.ac.in/eduprime3"
 JSON_FILE = "attendance.json"  # Stores last attendance
-USERNAME = "22071A12C6"
-PASSWORD = "Jai@2004"
+USERNAME = "22071A12C6P"
+PASSWORD = "Welcome@123"
 FILE_NAME = "notification.csv"
 
 
