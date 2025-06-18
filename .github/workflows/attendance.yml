@@ -19,4 +19,4 @@ jobs:
         run: pip install -r requirements.txt  # Make sure this file has Selenium, requests, etc.
 
       - name: Run Attendance Script
-        run: python your_script.py  # Replace with your script filename
+        run: python tracker.py

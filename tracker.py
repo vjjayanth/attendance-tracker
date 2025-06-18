@@ -10,6 +10,7 @@ import csv
 import json
 from datetime import datetime
 import requests
+from notification import send_telegram_message
 
 # Set Chrome options
 chrome_options = Options()
@@ -26,8 +27,8 @@ driver.get("https://www.google.com")
 # Constants
 LOGIN_URL = "https://automation.vnrvjiet.ac.in/eduprime3"
 JSON_FILE = "attendance.json"  # Stores last attendance
-USERNAME = "22071A12C6P"
-PASSWORD = "Welcome@123"
+USERNAME = os.getenv("ATTENDANCE_USERNAME")
+PASSWORD = os.getenv("ATTENDANCE_PASSWORD")
 FILE_NAME = "notification.csv"
 
 
@@ -168,8 +169,6 @@ try:
         
 
     # Replace with your Telegram Bot Token and Chat ID
-    TELEGRAM_BOT_TOKEN = "7735591874:AAHxx1ili9rLSV416lQsb2YFiWrVRwWTRkY"
-    CHAT_ID = "1623826061"
     NOTIFICATION_FILE_PATH = "notification.csv"  # Update this if your file has a different name
 
 
@@ -194,23 +193,6 @@ try:
 
         except Exception as e:
             return f"⚠ Error reading notification file: {str(e)}"
-
-    def send_telegram_message():
-        """Sends the attendance notification to Telegram."""
-        message = read_notification_file()
-        
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": CHAT_ID,
-            "text": message,
-            "parse_mode": "Markdown"
-        }
-        
-        response = requests.post(url, json=payload)
-        if response.status_code == 200:
-            print("✅ Notification sent successfully!")
-        else:
-            print(f"❌ Failed to send notification: {response.text}")
 
     # Run the function to send the message
     send_telegram_message()
